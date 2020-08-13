@@ -20,7 +20,8 @@ extern void (*free)(void* addr, void* type) PAYLOAD_BSS;
 extern void* (*memcpy)(void* dst, const void* src, size_t len) PAYLOAD_BSS;
 extern void* (*memset)(void *s, int c, size_t n) PAYLOAD_BSS;
 extern int (*memcmp)(const void *ptr1, const void *ptr2, size_t num) PAYLOAD_BSS;
-extern void (*eventhandler_register)(void *list, const char *name, void *func, void *arg, int priority) PAYLOAD_BSS;
+//extern void (*eventhandler_register)(void *list, const char *name, void *func, void *arg, int priority) PAYLOAD_BSS; // 5.05
+extern void (*eventhandler_register)(void *list, const char *name, void *func, void *key, void *arg, int priority) PAYLOAD_BSS; // 5.5x-6.72
 
 extern void* M_TEMP PAYLOAD_BSS;
 extern struct proc** ALLPROC PAYLOAD_BSS;
@@ -313,7 +314,8 @@ PAYLOAD_CODE int shellui_patch(void)
     }
 
     // enable remote play menu - credits to Aida
-    ret = proc_write_mem(ssui, (void *)(app_base  + remote_play_menu_patch), 5, "\xE9\x82\x02\x00\x00", &n);
+    //ret = proc_write_mem(ssui, (void *)(app_base  + remote_play_menu_patch), 5, "\xE9\x82\x02\x00\x00", &n); // 5.05
+	ret = proc_write_mem(ssui, (void *)(app_base  + remote_play_menu_patch), 5, "\xE9\xB8\x02\x00\x00", &n); // 5.5X
 
     for (int i = 0; i < num_entries; i++) {
         if (!memcmp(entries[i].name, "libkernel_sys.sprx", 18) && (entries[i].prot >= (PROT_READ | PROT_EXEC))) {
@@ -428,7 +430,7 @@ PAYLOAD_CODE void apply_patches() {
 
 PAYLOAD_CODE void install_patches()
 {
-	apply_patches();
-	eventhandler_register(NULL, "system_suspend_phase3", &restore_retail_dipsw, NULL, EVENTHANDLER_PRI_PRE_FIRST);
-	eventhandler_register(NULL, "system_resume_phase4", &apply_patches, NULL, EVENTHANDLER_PRI_LAST);
+	apply_patches();	
+	eventhandler_register(NULL, "system_suspend_phase3", &restore_retail_dipsw, "hen_resume_patches", NULL, EVENTHANDLER_PRI_PRE_FIRST); // 5.5X
+	eventhandler_register(NULL, "system_resume_phase4", &apply_patches, "hen_resume_patches", NULL, EVENTHANDLER_PRI_LAST); // 5.5X
 }
