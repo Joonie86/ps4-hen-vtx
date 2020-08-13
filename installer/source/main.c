@@ -61,21 +61,23 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	uint64_t cr0 = readCr0();
 	writeCr0(cr0 & ~X86_CR0_WP);
 
-	// debug menu error patches 5.05
+	// debug menu error patches 
 	*(uint32_t *)(kernel_base + debug_menu_error_patch1) = 0;
 	*(uint32_t *)(kernel_base + debug_menu_error_patch2) = 0;
 
-	// flatz disable pfs signature check 5.05
+	// flatz disable pfs signature check
 	*(uint32_t *)(kernel_base + disable_signature_check_patch) = 0x90C3C031;
 
-	// flatz enable debug RIFs 5.05
+	// flatz enable debug RIFs
 	*(uint32_t *)(kernel_base + enable_debug_rifs_patch1) = 0x90C301B0;
 	*(uint32_t *)(kernel_base + enable_debug_rifs_patch2) = 0x90C301B0;
 
-	// flatz allow sys_dynlib_dlsym in all processes 5.05
-	*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C1E9;
+	// flatz allow sys_dynlib_dlsym in all processes
+	*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C1E9; // 5.05-6.20
+	//*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C7E9; // 6.72
 
-	// spoof sdk_version - enable vr 5.05
+
+	// spoof sdk_version - enable vr 6.20
 	*(uint32_t *)(kernel_base + sdk_version_patch) = FAKE_FW_VERSION;
 
 	// enable debug log
