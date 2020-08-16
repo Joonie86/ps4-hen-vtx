@@ -12,7 +12,7 @@
 #define SBL_PFS_SX_addr                 0x2677290
 #define SBL_KEYMGR_KEY_SLOTS_addr       0x2684A78
 #define SBL_KEYMGR_KEY_RBTREE_addr      0x2684A88
-#define SBL_KEYMGR_BUF_VA_addr          0x2688808
+#define SBL_KEYMGR_BUF_VA_addr          0x2688000
 #define SBL_KEYMGR_BUF_GVA_addr         0x2688808
 #define FPU_CTX_addr                    0x26846C0
 #define DIPSW_addr                      0x215DB50
