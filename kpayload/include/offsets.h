@@ -119,7 +119,8 @@
 #define pkg_installer_patch             0x9E0031
 
 // enable support with 6.xx external hdd
-#define ext_hdd_patch                   0x60081D
+#define ext_hdd_patch1                  0x60081D
+#define ext_hdd_patch2                  0x146731
 
 // enable debug trophies on retail
 #define debug_trophies_patch            0x71CDD9
