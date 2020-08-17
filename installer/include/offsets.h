@@ -29,7 +29,7 @@
 #define enable_debug_rifs_patch2        0x0667df0
 
 // allow sys_dynlib_dlsym in all processes
-#define sys_dynlib_dlsym_patch          0x027F67B
+#define sys_dynlib_dlsym_patch          0x027F67A
 
 // sdk version spoof - enable all VR fws
 #define sdk_version_patch               0x1549d18
