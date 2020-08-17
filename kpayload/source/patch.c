@@ -174,6 +174,12 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 		nidf_libSceDipsw_patch3,
 		nidf_libSceDipsw_patch4,
 	};
+	
+		uint32_t ext_hdd_patch_offsets[] = {
+		ext_hdd_patch1,
+		ext_hdd_patch2,
+	};
+
 
 	uint8_t xor__eax_eax__inc__eax[5] = { 0x31, 0xC0, 0xFF, 0xC0, 0x90 };
 
@@ -228,9 +234,11 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 		goto error;
 
 	// enable support with 6.xx external hdd
-	ret = proc_write_mem(ssc, (void *)(text_seg_base + ext_hdd_patch), 1, "\xEB", &n);
-	if (ret)
-		goto error;
+	for (int i = 0; i < COUNT_OF(ext_hdd_patch_offsets); i++) {
+		ret = proc_write_mem(ssc, (void *)(text_seg_base + ext_hdd_patch_offsets[i]), 1, "\xEB", &n);
+		if (ret)
+			goto error;
+	}
 
 	// enable debug trophies on retail
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + debug_trophies_patch), 5, "\x31\xc0\x90\x90\x90", &n);
