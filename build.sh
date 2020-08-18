@@ -2,10 +2,6 @@
 
 set -e
 
-pushd tool
-make
-popd
-
 pushd kpayload
 make
 popd

@@ -73,8 +73,8 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	*(uint32_t *)(kernel_base + enable_debug_rifs_patch2) = 0x90C301B0;
 
 	// flatz allow sys_dynlib_dlsym in all processes
-	//*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C1E9; // 5.05-5.5x
-	*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C3E9; // 6.00-6.20
+	//*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C1E9; // 5.05
+	*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C3E9; // 5.5x-6.20
 	//*(uint64_t*)(kernel_base + sys_dynlib_dlsym_patch) = 0x8B4890000001C7E9; // 6.72
 
 
