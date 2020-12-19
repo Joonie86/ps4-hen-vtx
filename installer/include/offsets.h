@@ -17,8 +17,8 @@
 
 // Patches
 // debug menu error
-#define debug_menu_error_patch1         0x050380C
-#define debug_menu_error_patch2         0x050254E
+#define debug_menu_error_patch1         0x050254E
+#define debug_menu_error_patch2         0x050380C
 
 // disable signature check
 #define disable_signature_check_patch   0x06A3750

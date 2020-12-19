@@ -74,7 +74,7 @@
 #define sceSblKeymgrSmCallfunc_npdrm_decrypt_isolated_rif_hook      0x668100
 #define sceSblKeymgrSmCallfunc_npdrm_decrypt_rif_new_hook           0x668F13
 #define mountpfs__sceSblPfsSetKeys_hook1                            0x69F5FA
-#define mountpfs__sceSblPfsSetKeys_hook2                            0x69F826
+#define mountpfs__sceSblPfsSetKeys_hook2                            0x69F826 // ??
 
 // SceShellUI patches - debug patches
 #define sceSblRcMgrIsAllowDebugMenuForSettings_patch                0x01D6D0
@@ -118,9 +118,9 @@
 #define ext_hdd_patch2                  0x146731
 
 // enable debug trophies on retail
-#define debug_trophies_patch            0x71CDD9
+#define debug_trophies_patch            0x71CDD9 //
 
 // disable screenshot block
-#define disable_screenshot_patch        0x0DAC66
+#define disable_screenshot_patch        0x0DAC66 //
 
 #endif
